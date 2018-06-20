@@ -30,7 +30,7 @@ npm test
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
 License MIT
-vue官网
-
 技术栈：
 vue + vue-router + vuex + webpack + elementUI + axios 
+
+conflict

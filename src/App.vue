@@ -9,7 +9,6 @@
 export default {
   name: 'App'
 }
-///////////1234444
 </script>
 
 <style>

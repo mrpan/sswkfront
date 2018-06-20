@@ -31,3 +31,6 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 License MIT
 vue官网
+
+技术栈：
+vue + vue-router + vuex + webpack + elementUI + axios 

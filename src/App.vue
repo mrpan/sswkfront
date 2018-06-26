@@ -1,24 +1,46 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
-  </div>
+    <div id="app">
+        <h1 class="header">{{ msg1 }}</h1>
+        <h1 class="count">{{ msg2 }}</h1>
+        <h1 class="footer">{{ msg3 }}</h1>
+    </div>
 </template>
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  data () {
+    return {
+      msg1: '首页的头部',
+      msg2: '首页的内容部分',
+      msg3: '首页的尾部'
+    }
+  }
 }
-/////testtttttttttt
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+    #app {
+        width: 100%;
+        height: 100%;
+        background: #fafafa;
+    }
+
+    .header {
+        width: 100%;
+        height: 30%;
+        background: #66ccff;
+    }
+
+    .count {
+        width: 100%;
+        height: 50%;
+        background: yellow;
+    }
+
+    .footer {
+        width: 100%;
+        height: 20%;
+        background: greenyellow;
+    }
 </style>

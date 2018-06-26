@@ -4,12 +4,82 @@
     有不全或错误的大家可以改正。
 */
 
-    **首先保证你本地的仓库和Github仓库能匹配到，这部分有关配置本地git仓库公玥、密约，及Github上ssh_key,这部分不做介绍**.
+    **首先保证你本地的仓库和Github仓库能匹配到，如果使用ssh,这部分有关配置本地git仓库公玥、密约，及Github上ssh_key,这部分不做介绍**.
+
+    说明：
+    由于我们项目的开发是直接在sswkfront-dev分支上的,master不具备推送权限，所以为了推送方便，直接克隆分支sswkfront-dev代码就可以啦。
+    如果想克隆的是master的代码，跳到 （二、默认使用git克隆Master主分支代码）
+
+   一、以下使用Git克隆指定分支代码
 
     1.从github上克隆拉取一个项目
-    先用cd切换到本地要克隆项目目录，使用 git clone + github项目地址（这个地址在github项目的clone or download 使用ssh克隆（复制输入框里的地址））
-    成功后显示cloning...   之后会添加一些文件出来
-    如果失败 显示not establish 一般是ssk_key配置的问题，或者项目权限问题，自行百度
+    先用cd切换到本地要克隆项目目录，
+        
+        使用Git下载指定分支命令为：git clone -b 分支名 + 仓库地址，如下：
+    　　使用Git下载sswkfront-dev分支代码，使用命令：git clone -b sswkfront-dev git@github.com:UFEG-A/sswkfront.git (你github上地址)
+
+        此时已经和远程库关联.
+
+        成功后显示cloning...   之后会添加一些文件出来
+        如果失败 显示not establish 一般是ssk_key配置的问题，或者项目权限问题，自行百度
+
+    2.多人协作提交到github
+        克隆完成后，看看本地项目。
+
+        1)使用git remote 查看远程库  git remote -v 查看远程库信息 如果出现
+
+        origin  git@github.com:UFEG-A/sswkfront.git (fetch) （后面地址是你们github项目的地址）
+        origin  git@github.com:UFEG-A/sswkfront.git (push)
+
+        上面显示了可以抓取和推送的origin的地址。如果没有推送权限，就看不到push的地址.
+
+    2)如果直接在本地sswkfront-dev分支上开发
+
+       先使用git branch 查看分支  
+       使用Git克隆指定分支代码，默认为克隆的分支 swkfront-dev
+        如果直接在本地sswkfront-dev分支上开发。那么后面的操作很简单。
+
+        第一步: 修改本地文件后，使用git add + 修改文件名
+            回车后没反应表示添加到暂存区成功
+
+        第二步: 使用git commit -m "一些你修改文件的说明"  （-m表示换行）
+            提交后，出现一些添加文件，修改文件的信息，说明提交到当前分支成功
+
+        第三步: 使用git status (查看你添加提交的状态)
+
+        第四步: 使用git pull origin + 本地分支名（sswkfront-dev）  
+            拉取别人可能在你修改期间，推送到github远程仓库的代码，相当于SVN中update.
+            (解释一下： 此处的origin 白哦是远程github仓库的名字，默认origin,你可以通过一些命令修改，不过新手最好不要)
+            如果pull成功，会出现一些信息。
+            如果失败，一般是冲突之类的，需要在代码中修改（解决冲突的，我会在后续中补充）
+    
+        第五步: 使用git push origin + 本地分支名（sswkfront-dev）  
+           这一步把当前分支的代码推送到远程仓库，执行成功后会出现add很多文件的信息之类的。
+           切记，最后先执行第四部，在执行这一步。
+           然后就愉快的跑去github上刷新看看了。
+
+    3)想在本地创建一个自己的分支dev
+        第一步： 使用git ckeckout -b dev 
+        表示创建dev分支并且切换到dev分支
+
+        第二步： 使用git branch
+        查看分支信息，你会发现有两个，一个sswkfront-dev(你从github拉取下来的本地,一个dev(你自己创建的，并且有*，表示当前分支为dev分支))
+
+       第二步： dev分支修改文件完成了，然后我们可以把dev分支的工作成果合并到sswkfront-dev上。
+            1.使用git checkout sswkfront-dev
+                先切换到sswkfront-dev分支,你会发现改的没有了，原因是你刚在dev分支上开发的，并没有在sswkfront-dev分支上。
+            2. 使用git merge dev
+                合并dev分支的代码到sswkfront-dev分支上开发，你会发现dev分支上代码在sswkfront-dev上。
+            
+            然后用git add, git commit ,git pull, git push 执行 2)里的第一，第二，第三，第四，第五 操作了。
+
+二、默认使用git克隆Master主分支代码
+
+    1.从github上克隆拉取一个项目
+    先用cd切换到本地要克隆项目目录，默认使用 git clone + github项目地址（这个地址在github项目的clone or download 使用ssh克隆（复制输入框里的地址））
+    
+        成功后显示cloning...   之后会添加一些文件出来
+        如果失败 显示not establish 一般是ssk_key配置的问题，或者项目权限问题，自行百度
 
     2.多人协作提交到github
     克隆完成后，看看本地项目。
@@ -58,12 +128,4 @@
 
     现在就可以使用git push origin sswkfront-dev(本地分支名)
     如果出现有几个文件，几行之类的被添加，修改的的话，就成功了.然后跑到github刷新下页面，就会看到你已经提交上去了.
-
-    4.如何使用git 克隆指定github分支
-
-    使用Git下载指定分支命令为：git clone -b 分支名仓库地址，如下：
-　　使用Git下载sswkfront-dev分支代码，使用命令：git clone -b sswkfront-dev git@github.com:UFEG-A/sswkfront.git (你github上地址)
-
-
-
 

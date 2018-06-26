@@ -3,12 +3,17 @@
         <h1 class="header">{{ msg1 }}</h1>
         <h1 class="count">{{ msg2 }}</h1>
         <h1 class="footer">{{ msg3 }}</h1>
+				<gismap></gismap>
     </div>
 </template>
 
 <script>
+import gismap from './components/gis'
 export default {
   name: 'App',
+	components:{
+    'gismap':gismap
+  },
   data () {
     return {
       msg1: '首页的头部',

@@ -1,13 +1,17 @@
 <template>
   <div id="app">
     <img src="./assets/logo.png">
-    <router-view/>
+    <gismap></gismap>
   </div>
 </template>
 
 <script>
+import gismap from './components/gis'
 export default {
-  name: 'App'
+  name: 'App',
+  components:{
+    'gismap':gismap
+  }
 }
 </script>
 

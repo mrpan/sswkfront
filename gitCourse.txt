@@ -59,6 +59,10 @@
     现在就可以使用git push origin sswkfront-dev(本地分支名)
     如果出现有几个文件，几行之类的被添加，修改的的话，就成功了.然后跑到github刷新下页面，就会看到你已经提交上去了.
 
+    4.如何使用git 克隆指定github分支
+
+    使用Git下载指定分支命令为：git clone -b 分支名仓库地址，如下：
+　　使用Git下载sswkfront-dev分支代码，使用命令：git clone -b sswkfront-dev git@github.com:UFEG-A/sswkfront.git (你github上地址)
 
 
 

@@ -1,0 +1,65 @@
+/*
+    Curtain-A@outlook.com  2018/08/26
+    关于Git命令，为了方便开发，整理如下
+    有不全或错误的大家可以改正。
+*/
+
+    **首先保证你本地的仓库和Github仓库能匹配到，这部分有关配置本地git仓库公玥、密约，及Github上ssh_key,这部分不做介绍.
+
+    1.从github上克隆拉取一个项目
+    先用cd切换到本地要克隆项目目录，使用 git clone + github项目地址（这个地址在github项目的clone or download 使用ssh克隆（复制输入框里的地址））
+    成功后显示cloning...   之后会添加一些文件出来
+    如果失败 显示not establish 一般是ssk_key配置的问题，或者项目权限问题，自行百度
+
+    2.多人协作提交到github
+    克隆完成后，看看本地项目。
+
+    1)使用git remote 查看远程库  git remote -v 查看远程库信息 如果出现
+
+    origin  git@github.com:UFEG-A/sswkfront.git (fetch) （后面地址是你们github项目的地址）
+    origin  git@github.com:UFEG-A/sswkfront.git (push)
+
+    上面显示了可以抓取和推送的origin的地址。如果没有推送权限，就看不到push的地址.
+
+    2)使用git branch 查看分支  
+    一般使用git clone + github项目地址 克隆下来 都只有Master分支  
+
+    如果我们要在dev分支上开发呢？就必须创建远程origin的dev分支到本地，使用这个命令创建本地dev分支：
+    git checkout -b dev origin/dev   （前一个dev代表你本地创建了一个dev分支，后一个dev代表你github上dev分支）
+
+    其中 git checkout dev（本地分支名） 表示切换到dev分支.
+
+    假设你使用 git branch 看到你目前有Mastr 分支 ，那么使用git branch dev 创建dev 分支，使用git checkout dev 切换到dev分支.
+
+    创建dev分支并切换到dev分支： git checkout -b dev
+
+    git checkout -b dev origin/dev 创建dev分支并切换到dev分支和远程dev分支关联.
+
+    3)现在你已经创建了dev分支并切换到dev分支了，那么来修改dev 分支的文件。
+
+    （插一句，很重要，你在本地修改的文件时在工作区（就是你在电脑里能看到的目录，比如我的sswkfront文件夹就是一个工作区：）
+     工作区有一个隐藏目录.git，这个不算工作区，而是Git的版本库。
+
+    Git的版本库里存了很多东西，其中最重要的就是称为stage（或者叫index）的暂存区，还有Git为我们自动创建的第一个分支master，以及指向master的一个指针叫HEAD。
+    ）
+
+     假设你现在已经修改了dev 分支的README.md文件,其实你修改的就是工作区的内容。
+     但是git最后提交时在git仓库的当前分支提交的,那么在那修改文件时，其实时有工作区和暂存区的。
+     这部分不清楚的看廖雪峰的教程，关于工作区和暂存区的图。
+
+     修改文件后，第一步使用git add + README.md(你修改的文件名) 把修改内容添加到暂存区
+     第二步 用git commit提交更改，就是把暂存区的所有内容提交到当前分支
+
+    好了,现在你使用git status 查看一下状态，会发现一些信息，哪些文件被修改了，哪些放在暂存区...
+
+    那么现在你就可以push了，在使用push 之前，先用git pull origin sswkfront-dev(本地分支名)抓取一下 ，这样做是因为
+    你的小伙伴有可能在同一时间push了代码到你们的项目，所以保证先拉取一下。冲突的问题下次再说（尽量不保证冲突的话，在修改前先pull，在修改
+    或者修改文件后，使用完git add +文件名 添加到暂存区后，先不要使用git commit -m +"描述"提交）
+
+    现在就可以使用git push origin sswkfront-dev(本地分支名)
+    如果出现有几个文件，几行之类的被添加，修改的的话，就成功了.然后跑到github刷新下页面，就会看到你已经提交上去了.
+
+
+
+
+
